@@ -1,0 +1,112 @@
+1. java의 기본데이터 타입 8개를 적고 간단히 설명하시오.
+boolean : 참,거짓 1비트. JVM에서 처리하는 boolean의 실제 크기는 1비트가 아닐 수도 있다.
+char : 문자 2바이트
+byte : 1바이트 정수: -128~127
+short : 2바이트 정수: -32768~32767
+int : 4바이트 정수 : -2^31 ~ 2^31 -1
+long : 8바이트 정수 : -2^63 ~ 2^63 -1
+float : 4바이트 실수 : -3.4E38~3.4E38
+double : 8바이트 실수 : -1.7E308~1.7E308
+
+2. 키보드로 원의 반지름을 입력 받아서 원의 면적을 구하는 
+프로그램을 작성하시오. scanner사용
+
+import java.util.Scanner;
+
+
+
+public class RadiusPi {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);		
+		final double PI = 3.141592; //원주율 선언		
+		
+		System.out.print("반지름을 입력하시오 : ");
+		double r = scanner.nextDouble(); //반지름 받아오기
+		double circleArea = r*r*PI;
+		
+		System.out.println("원의 면적 : "+circleArea);
+	}
+
+}
+
+
+
+3. 이름, 학번, 학과를 키보드 입력을 받아서 출력하기.
+scanner사용
+
+import java.util.Scanner;
+
+public class PracticeScanner {
+	public static void main(String[] args) {
+		
+		System.out.println("이름, 학번, 학과를 띄어쓰기로 구분하여 입력하시오");
+		Scanner scanner = new Scanner(System.in);
+		
+		String name = scanner.next();
+		System.out.print("이름 : "+ name + ", ");
+		
+		int number = scanner.nextInt();
+		System.out.print("학번 : "+ number + ", ");
+		
+		String major = scanner.next();
+		System.out.print("학과 : "+ major + " ");
+		
+		scanner.close();
+		
+
+	}
+
+}
+
+
+4. 국어,영어,수학 세과목을 키보드 입력을 받아서 평균구하기. scanner사용
+
+import java.util.Scanner;
+
+public class SubjectAVG {
+
+	public static void main(String[] args) {
+			
+		System.out.print("국어, 영어, 수학 세과목의 점수를 띄어쓰기로 구분하여 입력하시오 : ");
+		Scanner scanner = new Scanner(System.in);
+		
+		
+		int na = scanner.nextInt();
+		int en = scanner.nextInt();
+		int me = scanner.nextInt();
+		
+		double avg = (na+en+me)/3;
+		
+		System.out.print("세과목의 평균값 : "+avg);
+		
+		scanner.close();
+
+	}
+
+}
+
+
+
+5. 입력한 값이 홀수인지 짝수인지 판별하는 프로그램 작성하기.
+scanner사용
+
+import java.util.Scanner;
+
+public class HoleJJak {
+
+	public static void main(String[] args) {
+		
+		System.out.print("정수를 입력하시오 : ");
+		Scanner scanner = new Scanner(System.in);
+		int a = scanner.nextInt();
+		String j = "짝수";
+		String h = "홀수";
+		
+		System.out.print("입력한 수는 "+((a%2==0)?(j):(h)));
+		
+		scanner.close();
+
+	}
+
+}
