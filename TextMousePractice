@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+class Mouse{
+	Scanner s = new Scanner(System.in);
+	int sideClick; //좌,우클릭
+	
+	public void mouseMove() {
+		System.out.println("마우스 클릭 방향을 입력하시오 (좌 : 0, 우 : 1) ");
+		sideClick = s.nextInt();
+		
+		if(sideClick==0) {
+			System.out.println("좌\n");
+		}
+		if(sideClick==1) {
+			System.out.println("우\n");
+		}
+	}
+}
+
+class WheelMouse extends Mouse{
+	int wheelSide; //휠방향
+	public void wheelMove() {
+		mouseMove();
+		System.out.println("휠 방향을 입력하시오 (위 : 0 , 아래 : 1) : ");
+		wheelSide = s.nextInt();
+		if(wheelSide==0) {
+			System.out.println("위\n");
+		}
+		if(wheelSide==1) {
+			System.out.println("아래\n");
+		}
+	}
+}
+
+class LaserMouse extends WheelMouse{
+	public void laserMove() {
+		wheelMove();
+	}
+	
+}
+
+public class JavaP_7_1 {
+
+	public static void main(String[] args) {
+		Mouse m = new Mouse();
+		WheelMouse w = new WheelMouse();
+		LaserMouse l = new LaserMouse();	
+				
+		m.mouseMove();
+		System.out.println("휠 마우스 클래스");
+		w.wheelMove();
+		System.out.println("레이저 마우스 클래스");
+		l.laserMove();
+		
+		System.out.println("프로그램 종료");
+
+	}
+
+}
