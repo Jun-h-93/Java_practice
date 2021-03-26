@@ -1,0 +1,302 @@
+//1. 전화번호(010-1234-5678)에서 국번(010)을 추출하시오.
+
+public class JavaP_9_1 {
+
+	public static void main(String[] args) {
+		String tel = new String("010-1234-5678");
+		String[] a = tel.split("-");
+		System.out.println(a[0]);
+
+
+	}
+
+}
+
+//2. 전화번호(010-1234-5678)에서 '-'을 제거하시오.
+//=>01012345678 로 변경하기.
+
+
+public class JavaP_9_1 {
+
+	public static void main(String[] args) {
+		String tel = new String("010-1234-5678");
+		String a = tel.replace("-", "");
+		System.out.println(a);
+
+	}
+
+}
+
+//3. 상품코드(E20160001)에서 상품카테고리('E')를 추출하시오.
+
+
+public class JavaP_9_3 {
+
+	public static void main(String[] args) {
+		String code = "E20160001";
+		char c = code.charAt(0);
+		System.out.println(c);
+	}
+
+}
+
+
+//4. 상품코드(E20160001)에서 년도('2016')를 추출하시오.
+
+public class JavaP_9_3 {
+
+	public static void main(String[] args) {
+		String code = new String("E20160001");
+		
+		for(int i=1; i <5;i++) {
+			System.out.print(code.charAt(i));
+		}
+	}
+
+}
+
+
+//5. 주소록 csv데이터에서 데이터를 분리하시오.
+//홍길동,010-1111-2222,hkd@hkd.com
+
+
+public class JavaP_9_5 {
+
+	public static void main(String[] args) {
+		String info = new String("홍길동,010-1111-2222,hkd@hkd.com");
+		String [] result = info.split(",");
+		for(int i=0;i<result.length;i++) {
+			System.out.println(result[i]);
+		}
+
+	}
+
+}
+
+
+/*
+6. csv데이터에 다음과 같은 학번이 저장되어 있을 때.
+EL201800001,CH201800021,EN12231
+EL-전자공학과
+CH-화학공학과
+EN-영어영문학과
+
+각 학번의 학과명을 출력하시오.
+*/
+
+
+public class P_6 {
+
+	public static void main(String[] args) {
+		String info = new String("EL201800001,CH201800021,EN12231");
+		String [] result = info.split(",");
+		String major = new String();
+		
+		for(int i=0; i < result.length; i++) {
+			char a = result[i].charAt(0);
+			char b = result[i].charAt(1);
+			major = (""+a+b);
+			if(major.equals("EL")) {
+				 System.out.println("EL-전자공학과");
+			}
+			else if(major.equals("CH")) {
+				 System.out.println("CH-화학공학과");
+			}
+			else if(major.equals("EN")) {
+				 System.out.println("EN-영어영문학과");
+			}
+			
+		}
+
+
+	}
+
+}
+
+
+/*
+7. 아이디에 !,@,#,$,%,^가 포함된 경우
+'아이디에 !,@,#,$,%,^가 포함되면 안됩니다.'
+메시지 출력하기. charAt()참고.
+*/
+
+import java.util.Scanner;
+
+public class JavaP_9_7 {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		
+		String t = new String();
+		
+		
+		System.out.print("아이디를 입력하시오 : ");
+		t = s.nextLine();
+		
+		for(int i=0; i<t.length(); i++) {
+			char c = t.charAt(i);
+			if(c == '!' || c== '@'|| c== '#'|| c== '$'|| c== '%'|| c== '^') {
+				System.out.println("아이디에 !,@,#,$,%,^가 포함되면 안됩니다");
+				
+			}
+			
+			
+		}
+		System.out.println("아이디는 "+t);
+
+	}
+
+}
+
+
+/*
+8. 책제목, 저자, 출판사, 가격을 
+키보드 입력을 통해서 ArrayList에 저장하시오.
+*/
+import java.util.*;
+
+
+
+public class JavaP_9_8_InputArray {
+	
+	public static void main(String[] args) {
+		ArrayList<String> a = new ArrayList<String>();
+		
+		Scanner s = new Scanner(System.in);
+		
+		System.out.print(">>제목 : ");
+		String ti = s.nextLine();
+		a.add(ti);
+		
+		System.out.print(">>저자 : ");
+		String au = s.nextLine();
+		a.add(au);
+		
+		System.out.print(">>출판사 : ");
+		String pu = s.nextLine();
+		a.add(pu);
+		
+		System.out.print(">>가격 : ");
+		String pr = s.nextLine();
+		a.add(pr);
+		
+		
+		System.out.println(a+" ");
+
+		
+		
+		s.close();
+
+	}
+
+}
+
+
+/*
+9. 8번을 HashMap을 이용해서 저장하고 출력하시오.
+key => 책제목, 저자, 출판사, 가격
+*/
+
+import java.util.Scanner;
+import java.util.*;
+
+
+
+public class JavaP_9_8_ver_HashMap {
+
+	public static void main(String[] args) {
+		HashMap<String, String> bookInfo = new HashMap<String, String>();
+		Scanner s = new Scanner(System.in);
+		
+		System.out.println("책 정보를 입력하시오");
+		
+		System.out.print(">>제목 ");
+		String ti = s.nextLine();
+		bookInfo.put("제목", ti);
+		System.out.print(">>저자 ");
+		String au = s.nextLine();
+		bookInfo.put("저자", au);
+		System.out.print(">>출판사 ");
+		String pu = s.nextLine();
+		bookInfo.put("출판사", pu);
+		System.out.print(">>가격 ");
+		String pr = s.nextLine();
+		bookInfo.put("가격", pr);
+		
+		while(true) {
+			System.out.println("찾고싶은 책의 정보를 입력하시오 (제목, 저자, 출판사, 가격, exit 입력시 종료)");
+			String findTxt = s.next();
+			if(findTxt.equals("exit")) {
+				System.out.println("종료합니다.");
+				break;
+			}
+			String subTxt = bookInfo.get(findTxt);
+			if(subTxt == null) {
+				System.out.println(findTxt+"는 없는 단이입니다.");				
+			}
+			else {
+				System.out.println(subTxt);
+			}
+		}
+		s.close();
+
+	}
+
+}
+
+
+/*
+10. 8번을 Book이라는 클래스를 만든 다음 
+ArrayList에 Book객체를 넣어서 처리하기.
+*/
+
+
+
+
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+class BookInfo {
+	String title, author, publisher, price;
+	public BookInfo (String title, String author, String publisher, String price) {
+		this.title = title;
+		this.author = author;
+		this.publisher = publisher;
+		this.price = price;
+	}
+}
+
+
+
+
+public class JavaP_9_8_OtherClass_ArrayList {
+	public static void main(String[] args) {
+		ArrayList<BookInfo> info = new ArrayList<BookInfo>();
+		
+		Scanner s = new Scanner(System.in);
+		
+		System.out.print(">>제목 ");
+		String title = s.nextLine();
+		System.out.print(">>저자 ");
+		String author = s.nextLine();
+		System.out.print(">>출판사 ");
+		String publisher = s.nextLine();
+		System.out.print(">>가격 ");
+		String price = s.nextLine();
+		info.add(new BookInfo(title, author, publisher, price));
+		
+		for(int i =0; i<info.size();i++) {
+//			BookInfo name = info.get(i);
+			System.out.println(info.get(i).title+ info.get(i).author+info.get(i).publisher+info.get(i).price);
+		}
+		
+		
+
+		
+		
+		s.close();
+	}
+}
+
+

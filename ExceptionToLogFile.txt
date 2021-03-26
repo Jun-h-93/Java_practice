@@ -1,0 +1,44 @@
+
+import java.io.*;
+import java.util.Calendar;
+
+public class ErrorMessageToLog {
+
+	public static void main(String[] args) {
+		int a;
+		FileWriter log = null;
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH+1);
+		int day = cal.get(Calendar.DAY_OF_MONTH);
+		int hour = cal.get(Calendar.HOUR);
+		int minute = cal.get(Calendar.MINUTE);
+		int second = cal.get(Calendar.SECOND);
+		
+		String now = new String ("C:\\log\\"+year+month+day+hour+minute+second+".log");
+		
+		try {
+			a = 1/0;
+			System.out.println(a);
+			
+		} catch(Exception e) {
+			
+			System.out.println("에러발생");
+			File f = new File(now);
+			try {
+		         log = new FileWriter(f);
+		         log.write(e.getMessage());
+		         log.close();
+		      } catch (IOException e1) {
+
+		         e1.printStackTrace();
+		      }
+
+			
+			
+			
+		}
+
+	}
+
+}
