@@ -1,0 +1,96 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+public class GalleryApp extends JFrame{
+	
+	private ImageIcon [] image = {
+			new ImageIcon("images/apple.jpg"),
+			new ImageIcon("images/pear.jpg"),
+			new ImageIcon("images/cherry.jpg")};
+	private JLabel imageLabel = new JLabel();
+	private JButton [] btn = new JButton[2];
+	private String [] text = {"Before", "Next"};
+	int a=0;
+	
+	public GalleryApp () {
+		this.setTitle("이미지 갤러리 앱");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Container c = getContentPane();
+		c.setLayout(new BorderLayout());
+		
+		imageLabel.setIcon(image[0]);
+		c.add(imageLabel, BorderLayout.CENTER);
+		imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JPanel btnPanel = new JPanel();
+		btnPanel.setBackground(Color.GRAY);
+		c.add(btnPanel, BorderLayout.SOUTH);
+		
+		ButtonGroup g = new ButtonGroup();
+		for(int i=0; i<btn.length;i++) {
+			btn[i] = new JButton(text[i]);
+			g.add(btn[i]);
+			btnPanel.add(btn[i]);
+			btn[i].addActionListener(new BtnCtrl());
+		}
+		
+		
+		
+		//
+		
+		
+		
+		this.setSize(300,500);
+		this.setVisible(true);
+	}
+	class BtnCtrl implements ActionListener{ //버튼 액션 리스너 만든거
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JButton b = (JButton)e.getSource();
+			
+				
+			
+				if(b.getText().equals("Before")) { //각 버튼 눌렀을때 버튼명 받아와서 
+					a = a-1;
+					if(a<0) {
+						a = 2;
+					}
+					imageLabel.setIcon(image[a]);
+					
+				}
+				
+				if(b.getText().equals("Next")) {
+					a = a+1;
+					if(a>2) {
+						a = 0;						
+					}
+					
+					imageLabel.setIcon(image[a]);
+					
+				}
+				
+
+			}
+
+	}
+		
+	
+
+	public static void main(String[] args) {
+		new GalleryApp();
+
+	}
+
+}

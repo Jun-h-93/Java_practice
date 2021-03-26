@@ -1,0 +1,102 @@
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Calendar;
+import java.util.Date;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+
+
+
+class OutClass implements ActionListener{
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Calendar cal = Calendar.getInstance();
+		Date now = cal.getTime();
+		String time = new String(""+now);
+		JButton b = (JButton)e.getSource();
+		if(b.getText().equals("외부클래스")) {			
+			JavaP11_3.lab.setText("외부 클래스 입력 : "+time);
+		}
+		
+		}
+}
+	
+
+
+public class JavaP11_3 extends JFrame{
+	static JLabel lab = new JLabel("시간 출력 : ");
+	public JavaP11_3() {
+		this.setTitle("자바연습11 문제3");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		GridLayout grid = new GridLayout(5, 2);
+		grid.setVgap(10);
+		
+		Container c = getContentPane();
+		c.setLayout(grid);
+		
+		
+		this.add(lab);
+		
+		//외부 클래스 버튼
+		JButton btn1 = new JButton("외부클래스");
+		btn1.addActionListener(new OutClass());
+		this.add(btn1);
+		
+		//내부 클래스 버튼
+		JButton btn2 = new JButton("내부클래스");
+		btn2.addActionListener(new InnerClass());
+		this.add(btn2);
+		
+		JButton btn3 = new JButton("익명클래스");
+		this.add(btn3);
+		btn3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Calendar cal = Calendar.getInstance();
+				Date now = cal.getTime();
+				String time = new String(""+now);
+				JButton c = (JButton)e.getSource();
+				if(c.getText().equals("익명클래스")) {
+					lab.setText("익명 클래스 입력 : "+time);
+				}
+			}
+			
+		});
+		
+		
+		
+		
+		this.setSize(500, 300);
+		this.setVisible(true);
+	}
+	
+	private class InnerClass implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Calendar cal = Calendar.getInstance();
+			Date now = cal.getTime();
+			String time = new String(""+now);
+			JButton b = (JButton)e.getSource();
+			if(b.getText().equals("내부클래스")) {
+				lab.setText("내부 클래스 입력 : "+time);
+			}
+		}
+		
+		
+	}
+	public static void main(String[] args) {
+		new JavaP11_3();
+		new OutClass();
+	}
+
+}
+
